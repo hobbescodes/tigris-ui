@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { onClickEvent } from "./Button.spec";
+import { buttonState } from "./Button.spec";
 import { Button } from "components";
 import { Flex } from "generated/panda/jsx";
 
@@ -62,10 +62,10 @@ export const Sizes: Story = {
   ),
 };
 
-export const OnClickEvent: Story = {
+export const ButtonState: Story = {
   render: () => <ButtonTest />,
-  play: onClickEvent,
-  name: "[TEST] onClick Event",
+  play: buttonState,
+  name: "[TEST] Button State",
   tags: ["test"],
 };
 

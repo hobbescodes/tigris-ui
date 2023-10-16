@@ -5,6 +5,8 @@ export {
   CardContent,
   CardFooter,
 } from "./Card/Card";
+export { default as Icon } from "./Icon/Icon";
+export { default as Modal } from "./Modal/Modal";
 
 export type { ButtonProps } from "./Button/Button";
 export type {
@@ -13,3 +15,5 @@ export type {
   CardContentProps,
   CardFooterProps,
 } from "./Card/Card";
+export type { IconProps } from "./Icon/Icon";
+export type { ModalProps } from "./Modal/Modal";

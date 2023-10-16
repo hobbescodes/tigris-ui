@@ -37,14 +37,18 @@
     "release": "bun run build && changeset publish"
   },
   "trustedDependencies": [
-    "@pandacss/dev",
-    "husky"
+    "@pandacss/dev"
   ],
+  "resolutions": {
+    "@zag-js/store": "^0.24.0"
+  },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@ark-ui/anatomy": "^0.1.0",
+    "@ark-ui/react": "^0.15.0",
     "@changesets/changelog-github": "^0.4.8",
     "@changesets/cli": "^2.26.2",
     "@omnidev/knit": "^0.1.2",
@@ -81,6 +85,7 @@
     "eslint-plugin-unused-imports": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.11.0",
     "storybook": "^7.4.6",
     "storybook-dark-mode": "^3.0.1",
     "tsup": "^7.2.0",

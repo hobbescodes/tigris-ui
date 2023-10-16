@@ -5,9 +5,9 @@ import type { ReactRenderer } from "@storybook/react";
 import type { PlayFunctionContext, Renderer } from "@storybook/types";
 
 /**
- * Test button onClick event fires correctly.
+ * Button test suite.
  */
-export const onClickEvent = async <R extends Renderer = ReactRenderer>({
+export const buttonState = async <R extends Renderer = ReactRenderer>({
   canvasElement,
 }: PlayFunctionContext<R>) => {
   const canvas = within(canvasElement as HTMLElement);
