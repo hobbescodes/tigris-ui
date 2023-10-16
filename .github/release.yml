@@ -21,7 +21,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: yarn release
+          publish: bun run release
           title: "feature(release): version packages"
           commit: "ci(changesets): version packages"
         env:
