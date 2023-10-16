@@ -6,6 +6,7 @@ import {
   easings,
   keyframes,
   semanticTokens,
+  slotRecipes,
   zIndex,
 } from "lib/panda";
 
@@ -22,6 +23,7 @@ const tigrisPreset = definePreset({
       keyframes,
       tokens,
       semanticTokens,
+      slotRecipes,
     },
   },
 });
