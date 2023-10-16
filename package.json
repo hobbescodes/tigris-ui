@@ -37,8 +37,7 @@
     "release": "bun run build && changeset publish"
   },
   "trustedDependencies": [
-    "@pandacss/dev",
-    "husky"
+    "@pandacss/dev"
   ],
   "peerDependencies": {
     "react": "^18.2.0",
