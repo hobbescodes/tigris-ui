@@ -10,8 +10,6 @@ const recipe = cva({
     display: "inline-flex",
     alignItems: "center",
     h: "fit-content",
-    px: 2.5,
-    py: 1.5,
     cursor: "pointer",
     fontWeight: "semibold",
     _hover: {
@@ -19,33 +17,69 @@ const recipe = cva({
     },
   },
   variants: {
+    colorScheme: {
+      primary: {
+        bgColor: "accent.primary",
+        borderColor: "accent.primary",
+        color: "accent.primary",
+      },
+      secondary: {
+        bgColor: "accent.secondary",
+        borderColor: "accent.secondary",
+        color: "accent.secondary",
+      },
+      tertiary: {
+        bgColor: "accent.tertiary",
+        borderColor: "accent.tertiary",
+        color: "accent.tertiary",
+      },
+    },
     variant: {
       primary: {
-        bgColor: "brand.primary.700",
         borderRadius: "sm",
-        color: { base: "white", _dark: "black" },
+        color: "white!",
       },
       ghost: {
         bgColor: "transparent",
         borderRadius: "sm",
-        color: "brand.primary.700",
       },
       rounded: {
-        bgColor: "brand.primary.700",
         borderRadius: "full",
-        color: { base: "white", _dark: "black" },
+        color: "white!",
       },
       outline: {
         bgColor: "transparent",
         borderRadius: "sm",
         border: "1px solid",
-        borderColor: "brand.primary.700",
-        color: "brand.primary.700",
+      },
+    },
+    size: {
+      xs: {
+        fontSize: "xs",
+        px: 1.5,
+        py: 0.5,
+      },
+      sm: {
+        fontSize: "sm",
+        px: 2,
+        py: 1,
+      },
+      md: {
+        fontSize: "md",
+        px: 2.5,
+        py: 1.5,
+      },
+      lg: {
+        fontSize: "lg",
+        px: 3,
+        py: 2,
       },
     },
   },
   defaultVariants: {
+    colorScheme: "primary",
     variant: "primary",
+    size: "md",
   },
 });
 
