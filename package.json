@@ -16,9 +16,9 @@
   },
   "exports": {
     ".": {
+      "types": "./build/ui.d.ts",
       "require": "./build/ui.js",
-      "import": "./build/ui.mjs",
-      "types": "./build/ui.d.ts"
+      "import": "./build/ui.mjs"
     },
     "./index.css": "./build/ui.css"
   },
