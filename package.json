@@ -1,5 +1,5 @@
 {
-  "name": "@tigris/ui",
+  "name": "@hobbescodes/tigris-ui",
   "version": "0.0.0",
   "description": "a reusable design system and composible library",
   "author": "hobbescodes",
@@ -34,7 +34,7 @@
     "test": "test-storybook",
     "storybook": "storybook dev --quiet --no-open -p 6006",
     "storybook:build": "panda codegen && storybook build",
-    "release": "build && changeset publish"
+    "release": "bun run build && changeset publish"
   },
   "trustedDependencies": [
     "@pandacss/dev",
