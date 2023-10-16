@@ -1,9 +1,18 @@
+import { useState } from "react";
+
+import { onClickEvent } from "./Button.spec";
 import { Button } from "components";
 import { Flex } from "generated/panda/jsx";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
 type Story = StoryObj<typeof Button>;
+
+const ButtonTest = () => {
+  const [count, setCount] = useState(0);
+
+  return <Button onClick={() => setCount(count + 1)}>Clicks: {count}</Button>;
+};
 
 export const Variants: Story = {
   render: () => (
@@ -53,10 +62,16 @@ export const Sizes: Story = {
   ),
 };
 
+export const OnClickEvent: Story = {
+  render: () => <ButtonTest />,
+  play: onClickEvent,
+  name: "[TEST] onClick Event",
+  tags: ["test"],
+};
+
 const meta = {
   title: "Components/Button",
   component: Button,
-  tags: ["autodocs"],
   decorators: [(Story) => <Story />],
 } satisfies Meta<typeof Button>;
 

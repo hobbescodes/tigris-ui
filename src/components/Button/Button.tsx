@@ -84,7 +84,7 @@ const recipe = cva({
 });
 
 /**
- * Core button component.
+ * Primary UI component for user interaction.
  */
 const Button = panda("button", recipe);
 

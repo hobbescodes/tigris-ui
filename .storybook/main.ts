@@ -17,6 +17,9 @@ const storybookConfig: StorybookConfig = {
     // typecheck stories during Storybook build
     check: true,
   },
+  docs: {
+    autodocs: true,
+  },
   addons: [
     "@storybook/addon-a11y",
     "@storybook/addon-links",
