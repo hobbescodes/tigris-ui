@@ -11,6 +11,7 @@ import {
 } from "@ark-ui/react";
 import { FiX as CloseIcon } from "react-icons/fi";
 
+import Icon from "components/Icon/Icon";
 import { modal } from "generated/panda/recipes";
 
 import type { DialogProps } from "@ark-ui/react";
@@ -63,7 +64,9 @@ const Modal = ({
                 {typeof children === "function" ? children(ctx) : children}
 
                 <DialogCloseTrigger className={classes.closeTrigger}>
-                  <CloseIcon />
+                  <Icon color="fg.primary">
+                    <CloseIcon />
+                  </Icon>
                 </DialogCloseTrigger>
               </DialogContent>
             </DialogContainer>
