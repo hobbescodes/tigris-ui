@@ -1,3 +1,4 @@
+import { modalState } from "./Modal.spec";
 import { Button, Modal } from "components";
 import { panda } from "generated/panda/jsx";
 
@@ -31,6 +32,13 @@ export const WithContext: Story = {
       {({ isOpen }) => <panda.p mt={2}>Open: {String(isOpen)}</panda.p>}
     </Modal>
   ),
+};
+
+export const ModalState: Story = {
+  ...Default,
+  play: modalState,
+  name: "[TEST] Modal State",
+  tags: ["test"],
 };
 
 const meta = {

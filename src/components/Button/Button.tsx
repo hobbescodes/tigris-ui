@@ -58,22 +58,22 @@ const button = cva({
       xs: {
         fontSize: "xs",
         px: 1.5,
-        py: 0.5,
+        py: 1,
       },
       sm: {
         fontSize: "sm",
         px: 2,
-        py: 1,
+        py: 1.5,
       },
       md: {
         fontSize: "md",
         px: 2.5,
-        py: 1.5,
+        py: 2,
       },
       lg: {
         fontSize: "lg",
         px: 3,
-        py: 2,
+        py: 2.5,
       },
     },
   },

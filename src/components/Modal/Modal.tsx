@@ -63,7 +63,10 @@ const Modal = ({
                 {/* forward nested context/state if utilized, otherwise directly render children */}
                 {typeof children === "function" ? children(ctx) : children}
 
-                <DialogCloseTrigger className={classes.closeTrigger}>
+                <DialogCloseTrigger
+                  aria-label="close button"
+                  className={classes.closeTrigger}
+                >
                   <Icon color="fg.primary">
                     <CloseIcon />
                   </Icon>
