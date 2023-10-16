@@ -43,6 +43,9 @@ const colors = defineTokens.colors({
       950: { value: "#093643" },
     },
   },
+  neutral: {
+    25: { value: "#fdfdfd" },
+  },
 });
 
 export default colors;

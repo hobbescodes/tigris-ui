@@ -40,7 +40,7 @@ const recipe = sva({
       fontWeight: "semibold",
     },
     description: {
-      color: "fg.muted", // TODO: update semantic tokens
+      color: "fg.muted",
       textStyle: "sm",
     },
   },
