@@ -1,11 +1,10 @@
 import { sva } from "generated/panda/css";
 import { Flex, panda } from "generated/panda/jsx";
 
+import type { RecipeVariantProps } from "generated/panda/css";
 import type { ComponentProps } from "react";
 
-export interface CardProps extends ComponentProps<typeof panda.div> {}
-
-const recipe = sva({
+const card = sva({
   slots: ["root", "header", "title", "description", "content", "footer"],
   base: {
     root: {
@@ -25,6 +24,7 @@ const recipe = sva({
       display: "flex",
       flex: 1,
       flexDirection: "column",
+      color: "fg.primary",
       pb: 6,
       px: 6,
     },
@@ -39,16 +39,33 @@ const recipe = sva({
     title: {
       textStyle: "lg",
       fontWeight: "semibold",
+      color: "fg.primary",
     },
     description: {
       color: "fg.muted",
       textStyle: "sm",
     },
   },
+  variants: {
+    variant: {
+      primary: {
+        root: {
+          bgColor: "bg.primary",
+          borderColor: "border.primary",
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    variant: "primary",
+  },
 });
 
-const Card = ({ children, ...rest }: CardProps) => {
-  const classes = recipe();
+export type CardProps = ComponentProps<typeof panda.div> &
+  RecipeVariantProps<typeof card>;
+
+const Card = ({ children, variant, ...rest }: CardProps) => {
+  const classes = card({ variant });
 
   return (
     <panda.div className={classes.root} {...rest}>
@@ -68,7 +85,7 @@ export const CardHeader = ({
   description,
   ...rest
 }: CardHeaderProps) => {
-  const classes = recipe();
+  const classes = card();
 
   return (
     <panda.div className={classes.header} {...rest}>
@@ -88,7 +105,7 @@ export const CardHeader = ({
 export interface CardContentProps extends ComponentProps<typeof panda.div> {}
 
 export const CardContent = ({ children, ...rest }: CardContentProps) => {
-  const classes = recipe();
+  const classes = card();
 
   return (
     <panda.div className={classes.content} {...rest}>
@@ -100,7 +117,7 @@ export const CardContent = ({ children, ...rest }: CardContentProps) => {
 export interface CardFooterProps extends ComponentProps<typeof panda.div> {}
 
 export const CardFooter = ({ children, ...rest }: CardFooterProps) => {
-  const classes = recipe();
+  const classes = card();
 
   return (
     <panda.div className={classes.footer} {...rest}>

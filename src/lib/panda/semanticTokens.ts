@@ -44,6 +44,14 @@ const semanticTokens = defineSemanticTokens({
         },
       },
     },
+    border: {
+      primary: {
+        value: {
+          base: "{colors.neutral.200}",
+          _dark: "{colors.neutral.800}",
+        },
+      },
+    },
   },
 });
 
