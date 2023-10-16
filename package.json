@@ -44,6 +44,7 @@
     "@changesets/cli": "^2.26.2",
     "@omnidev/knit": "^0.1.2",
     "@pandacss/dev": "^0.16.0",
+    "@storybook/addon-a11y": "^7.4.6",
     "@storybook/addon-essentials": "^7.4.6",
     "@storybook/addon-interactions": "^7.4.6",
     "@storybook/addon-links": "^7.4.6",
@@ -72,6 +73,8 @@
     "react-dom": "^18.2.0",
     "storybook": "^7.4.6",
     "tsup": "^7.2.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vite": "^4.4.11",
+    "vite-tsconfig-paths": "^4.2.1"
   }
 }
