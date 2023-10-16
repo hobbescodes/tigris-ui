@@ -64,6 +64,9 @@ const card = sva({
 export type CardProps = ComponentProps<typeof panda.div> &
   RecipeVariantProps<typeof card>;
 
+/**
+ * A container component that displays content in a compact and organized way.
+ */
 const Card = ({ children, variant, ...rest }: CardProps) => {
   const classes = card({ variant });
 
