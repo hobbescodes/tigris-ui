@@ -3,7 +3,7 @@ import { panda } from "generated/panda/jsx";
 
 import type { ComponentProps } from "react";
 
-export interface Props extends ComponentProps<typeof Button> {}
+export interface ButtonProps extends ComponentProps<typeof Button> {}
 
 const recipe = cva({
   base: {

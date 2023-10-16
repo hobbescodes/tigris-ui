@@ -31,6 +31,7 @@ const recipe = sva({
     footer: {
       display: "flex",
       justifyContent: "flex-end",
+      gap: 2,
       pb: 6,
       pt: 2,
       px: 6,
