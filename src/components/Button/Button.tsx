@@ -3,15 +3,16 @@ import { panda } from "generated/panda/jsx";
 
 import type { ComponentProps } from "react";
 
-export interface Props extends ComponentProps<typeof Button> {}
+export interface ButtonProps extends ComponentProps<typeof Button> {}
 
-const recipe = cva({
+const button = cva({
   base: {
     display: "inline-flex",
     alignItems: "center",
     h: "fit-content",
     cursor: "pointer",
     fontWeight: "semibold",
+    border: "1px solid",
     _hover: {
       opacity: 0.8,
     },
@@ -42,6 +43,7 @@ const recipe = cva({
       ghost: {
         bgColor: "transparent",
         borderRadius: "sm",
+        borderColor: "transparent!",
       },
       rounded: {
         borderRadius: "full",
@@ -50,7 +52,6 @@ const recipe = cva({
       outline: {
         bgColor: "transparent",
         borderRadius: "sm",
-        border: "1px solid",
       },
     },
     size: {
@@ -86,6 +87,6 @@ const recipe = cva({
 /**
  * Primary UI component for user interaction.
  */
-const Button = panda("button", recipe);
+const Button = panda("button", button);
 
 export default Button;

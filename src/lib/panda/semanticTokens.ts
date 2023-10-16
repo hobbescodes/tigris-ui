@@ -22,6 +22,36 @@ const semanticTokens = defineSemanticTokens({
         },
       },
     },
+    bg: {
+      primary: {
+        value: {
+          base: "{colors.neutral.25}",
+          _dark: "{colors.neutral.950}",
+        },
+      },
+    },
+    fg: {
+      primary: {
+        value: {
+          base: "{colors.neutral.950}",
+          _dark: "{colors.white}",
+        },
+      },
+      muted: {
+        value: {
+          base: "{colors.neutral.600}",
+          _dark: "{colors.neutral.300}",
+        },
+      },
+    },
+    border: {
+      primary: {
+        value: {
+          base: "{colors.neutral.200}",
+          _dark: "{colors.neutral.800}",
+        },
+      },
+    },
   },
 });
 
