@@ -15,7 +15,7 @@ Follow these steps to use the Tigris UI library in your project.
 
    const pandaConfig = defineConfig({
      preflight: true,
-     presets: ["@pandacss/dev/presets", tigrisPreset],
+     presets: ["@pandacss/preset-base", tigrisPreset],
      include: ["src/**/*.{ts,tsx}"],
      outdir: "src/generated/panda",
    });
@@ -24,6 +24,8 @@ Follow these steps to use the Tigris UI library in your project.
    ```
 
    Feel free to modify the Panda config as needed, for example if you need to add more patterns to `include`.
+
+   💡 **Note:** If you use `jsxFactory` in `pandaConfig`, the base preset will need to be updated to `@pandacss/preset-<JSX_FACTORY_NAME>`
 
 3. Create a `postcss.config.js` file in your project root with the following content:
 

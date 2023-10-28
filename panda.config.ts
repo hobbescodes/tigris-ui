@@ -16,8 +16,7 @@ const pandaConfig = defineConfig({
   preflight: true,
   include: ["src/**/*.{ts,tsx,mdx}"],
   outdir: "src/generated/panda",
-  // TODO: figure out why @pandacss/preset-base doesn't work
-  presets: ["@pandacss/dev/presets", tigrisPreset],
+  presets: ["@pandacss/preset-panda", tigrisPreset],
   // set JSX factory name
   jsxFactory: "panda",
   jsxFramework: "react",
