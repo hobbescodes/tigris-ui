@@ -1,4 +1,18 @@
+import { spawnSync } from "child_process";
+
 import { defineConfig as defineTsupConfig } from "tsup";
+
+import type { SpawnSyncOptionsWithStringEncoding as SpawnSyncOptions } from "child_process";
+
+/**
+ * Options for spawning synchronous processes.
+ */
+const spawnProcessOptions: SpawnSyncOptions = {
+  cwd: process.cwd(),
+  env: process.env,
+  stdio: "inherit",
+  encoding: "utf-8",
+};
 
 /**
  * `tsup` configuration.
@@ -19,7 +33,14 @@ const tsupConfig = defineTsupConfig({
   // see https://tsup.egoist.dev/#excluding-packages
   external: ["@ark-ui/react", "react-icons"],
   outDir: "build",
-  dts: true,
+  onSuccess: async () => {
+    console.log("Generating type declarations...");
+    // NB: below is used as alternative to `tsup` config `dts: true` option to avoid race condition with local package publish (at the cost of less concurrency)
+    spawnSync("bun", ["tsup", "--dts-only"], spawnProcessOptions);
+
+    console.log("Publishing local package...");
+    spawnSync("bun", ["link"], spawnProcessOptions);
+  },
   esbuildOptions: (opts, _ctx) => {
     // https://esbuild.github.io/api/#resolve-extensions
     const defaultExtensions = [".tsx", ".ts", ".jsx", ".js", ".css", ".json"];
