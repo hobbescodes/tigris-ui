@@ -1,6 +1,6 @@
 import { defineConfig } from "@pandacss/dev";
 
-import tigrisPreset from "lib/panda/tigris.preset";
+import { tigrisPreset } from "lib/theme/presets";
 
 /**
  * 🐼 Panda configuration.
