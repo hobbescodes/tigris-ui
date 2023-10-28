@@ -1,68 +1,10 @@
-import { sva } from "generated/panda/css";
 import { Flex, panda } from "generated/panda/jsx";
+import { card } from "generated/panda/recipes";
 
-import type { RecipeVariantProps } from "generated/panda/css";
+import type { CardVariantProps } from "generated/panda/recipes";
 import type { ComponentProps } from "react";
 
-const card = sva({
-  slots: ["root", "header", "title", "description", "content", "footer"],
-  base: {
-    root: {
-      display: "flex",
-      flexDirection: "column",
-      position: "relative",
-      boxShadow: "xs",
-      borderRadius: "md",
-      borderWidth: "1px",
-    },
-    header: {
-      display: "flex",
-      gap: 1,
-      p: 6,
-    },
-    content: {
-      display: "flex",
-      flex: 1,
-      flexDirection: "column",
-      color: "fg.primary",
-      pb: 6,
-      px: 6,
-    },
-    footer: {
-      display: "flex",
-      justifyContent: "flex-end",
-      gap: 2,
-      pb: 6,
-      pt: 2,
-      px: 6,
-    },
-    title: {
-      textStyle: "lg",
-      fontWeight: "semibold",
-      color: "fg.primary",
-    },
-    description: {
-      color: "fg.muted",
-      textStyle: "sm",
-    },
-  },
-  variants: {
-    variant: {
-      primary: {
-        root: {
-          bgColor: "bg.primary",
-          borderColor: "border.primary",
-        },
-      },
-    },
-  },
-  defaultVariants: {
-    variant: "primary",
-  },
-});
-
-export type CardProps = ComponentProps<typeof panda.div> &
-  RecipeVariantProps<typeof card>;
+export type CardProps = ComponentProps<typeof panda.div> & CardVariantProps;
 
 /**
  * A container component that displays content in a compact and organized way.
@@ -77,18 +19,19 @@ const Card = ({ children, variant, ...rest }: CardProps) => {
   );
 };
 
-export interface CardHeaderProps extends ComponentProps<typeof panda.div> {
+export interface CardHeaderProps extends CardProps {
   title?: string;
   description?: string;
 }
 
 export const CardHeader = ({
   children,
+  variant,
   title,
   description,
   ...rest
 }: CardHeaderProps) => {
-  const classes = card();
+  const classes = card({ variant });
 
   return (
     <panda.div className={classes.header} {...rest}>
@@ -105,10 +48,14 @@ export const CardHeader = ({
   );
 };
 
-export interface CardContentProps extends ComponentProps<typeof panda.div> {}
+export interface CardContentProps extends CardProps {}
 
-export const CardContent = ({ children, ...rest }: CardContentProps) => {
-  const classes = card();
+export const CardContent = ({
+  children,
+  variant,
+  ...rest
+}: CardContentProps) => {
+  const classes = card({ variant });
 
   return (
     <panda.div className={classes.content} {...rest}>
@@ -117,10 +64,10 @@ export const CardContent = ({ children, ...rest }: CardContentProps) => {
   );
 };
 
-export interface CardFooterProps extends ComponentProps<typeof panda.div> {}
+export interface CardFooterProps extends CardProps {}
 
-export const CardFooter = ({ children, ...rest }: CardFooterProps) => {
-  const classes = card();
+export const CardFooter = ({ children, variant, ...rest }: CardFooterProps) => {
+  const classes = card({ variant });
 
   return (
     <panda.div className={classes.footer} {...rest}>
