@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "prepare": "husky install",
-    "dev": "dotenv -e .env -c -- panda codegen && concurrently --kill-others -n \"PANDA,STORYBOOK\" -c \"#f13334,#ff4785\" \"bun dev:css\" \"bun storybook\"",
+    "dev": "panda codegen && concurrently --kill-others -n \"PANDA,STORYBOOK\" -c \"#f13334,#ff4785\" \"bun dev:css\" \"bun storybook\"",
     "dev:css": "panda --watch",
     "build": "panda codegen && tsup",
     "format": "prettier . --write",
