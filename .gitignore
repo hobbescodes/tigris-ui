@@ -1,3 +1,5 @@
-build
 node_modules
+build
+coverage
 generated
+storybook-static
