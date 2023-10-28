@@ -7,10 +7,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
@@ -19,20 +16,9 @@
     "sourceMap": true,
     "strict": true,
     "target": "esnext",
-    "typeRoots": [
-      "generated/panda"
-    ]
+    "typeRoots": ["generated/panda", "node_modules/@types"],
+    "outDir": "build"
   },
-  "include": [
-    "src",
-    "*.config.ts",
-    "*.config.cjs",
-    ".storybook/**/*.ts",
-    ".storybook/**/*.tsx",
-    "test-runner-jest.config.js"
-  ],
-  "exclude": [
-    "**/node_modules",
-    "src/generated"
-  ]
+  "include": ["src", "*.config.ts", "*.config.cjs", ".storybook/**/*.ts"],
+  "exclude": ["node_modules"]
 }
