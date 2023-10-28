@@ -1,5 +1,3 @@
-"use client";
-
 // inject root cascade layers
 import "lib/styles/main.css";
 

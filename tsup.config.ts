@@ -20,17 +20,17 @@ const tsupConfig = defineTsupConfig({
   external: ["@ark-ui/react", "react-icons"],
   outDir: "build",
   dts: true,
-  esbuildOptions: (opt, _ctx) => {
+  esbuildOptions: (opts, _ctx) => {
     // https://esbuild.github.io/api/#resolve-extensions
     const defaultExtensions = [".tsx", ".ts", ".jsx", ".js", ".css", ".json"];
 
-    // filter out extensions from `esbuild` defaults
-    const selectedDefaultExtensions = defaultExtensions.filter(
-      (ext) => ![".css", ".json"].includes(ext)
-    );
-
     // extend recognized extensions to include explicit ESM extensions
-    opt.resolveExtensions = [...selectedDefaultExtensions, ".mts", ".mjs"];
+    opts.resolveExtensions = [...defaultExtensions, ".mts", ".mjs"];
+
+    opts.banner = {
+      // TODO remove, necessary for e.g. context, most ark components, etc. but try to set at a more granular level or not set at all
+      js: '"use client";',
+    };
   },
 });
 
