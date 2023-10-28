@@ -1,9 +1,9 @@
 import { dialogAnatomy } from "@ark-ui/anatomy";
 import { defineSlotRecipe } from "@pandacss/dev";
 
-export const modalRecipe = defineSlotRecipe({
+const modal = defineSlotRecipe({
   className: "modal",
-  description: "The styles for the Modal component",
+  description: "Modal styles recipe.",
   slots: dialogAnatomy.keys(),
   base: {
     backdrop: {
@@ -72,3 +72,5 @@ export const modalRecipe = defineSlotRecipe({
     },
   },
 });
+
+export default modal;

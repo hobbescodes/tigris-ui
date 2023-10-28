@@ -1,6 +1,7 @@
 import { mergeConfig } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
 
+import type { AddonOptionsBabel as CoverageOptions } from "@storybook/addon-coverage";
 import type { StorybookConfig } from "@storybook/react-vite";
 
 /**
@@ -26,6 +27,14 @@ const storybookConfig: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "storybook-dark-mode",
+    {
+      name: "@storybook/addon-coverage",
+      options: {
+        istanbul: {
+          include: ["**/*.tsx", "**/*.stories.tsx"],
+        },
+      } as CoverageOptions,
+    },
   ],
   // staticDirs: ["../public"],
   viteFinal: (config) =>
