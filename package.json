@@ -40,12 +40,6 @@
     "storybook:build": "panda codegen && storybook build",
     "release": "bun run build && changeset publish"
   },
-  "trustedDependencies": [
-    "@pandacss/dev"
-  ],
-  "resolutions": {
-    "@zag-js/store": "^0.24.0"
-  },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
