@@ -86,9 +86,9 @@ const Drawer = ({
                   </DialogCloseTrigger>
                 </PandaContainer>
 
-                <panda.div className={classes.body}>
+                <PandaContainer className={classes.body} asChild>
                   {getContextualChildren({ ctx, children })}
-                </panda.div>
+                </PandaContainer>
 
                 {footer && (
                   <PandaContainer className={classes.footer} asChild>
