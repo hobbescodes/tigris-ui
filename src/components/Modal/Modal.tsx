@@ -10,10 +10,10 @@ import {
   Portal,
 } from "@ark-ui/react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { FiX as CloseIcon } from "react-icons/fi";
 
 import Icon from "components/Icon/Icon";
-import { cx } from "generated/panda/css";
 import { panda } from "generated/panda/jsx";
 import { modal } from "generated/panda/recipes";
 import { useIsMobile } from "lib/hooks";
@@ -44,6 +44,8 @@ const Modal = ({
 }: ModalProps) => {
   const classes = modal({ variant });
 
+  const [isTapped, setIsTapped] = useState(false);
+
   const isMobile = useIsMobile();
 
   return (
@@ -60,20 +62,17 @@ const Modal = ({
             <DialogBackdrop className={classes.backdrop} />
 
             <DialogContainer className={classes.container}>
-              <DialogContent
-                className={cx(classes.content, "group")}
-                unmountOnExit
-                asChild
-              >
+              <DialogContent className={classes.content} unmountOnExit asChild>
                 <PandaMotionContainer
                   drag={isMobile ? "y" : false}
-                  dragConstraints={{ top: 0, bottom: 200 }}
+                  dragConstraints={{ top: 0, bottom: 500 }}
                   dragElastic={false}
                   dragSnapToOrigin
                   onDrag={(_e, info) => {
-                    if (info.offset.y > 150 || info.velocity.y > 500)
-                      ctx.close();
+                    if (info.offset.y > 250) ctx.close();
                   }}
+                  onTapStart={() => setIsTapped(true)}
+                  onTap={() => setIsTapped(false)}
                   cursor={isMobile ? "pointer" : "default"}
                 >
                   <panda.div
@@ -84,7 +83,7 @@ const Modal = ({
                     my={3}
                     h={2}
                     bgColor="border.primary"
-                    opacity={{ base: 1, _groupHover: 0.8 }}
+                    opacity={isTapped ? 0.8 : 1}
                   />
 
                   {title && (
