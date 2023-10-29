@@ -23,7 +23,9 @@
     "./index.css": "./build/ui.css"
   },
   "keywords": [
-    "bun"
+    "bun",
+    "panda",
+    "ark"
   ],
   "scripts": {
     "prepare": "husky install",
@@ -55,16 +57,17 @@
     "@omnidev/knit": "^0.1.2",
     "@pandacss/dev": "^0.17.3",
     "@pandacss/types": "^0.17.3",
-    "@storybook/addon-a11y": "^7.4.6",
+    "@storybook/addon-a11y": "^7.5.1",
     "@storybook/addon-coverage": "^0.0.9",
-    "@storybook/addon-essentials": "^7.4.6",
-    "@storybook/addon-interactions": "^7.4.6",
-    "@storybook/addon-links": "^7.4.6",
+    "@storybook/addon-essentials": "^7.5.1",
+    "@storybook/addon-interactions": "^7.5.1",
+    "@storybook/addon-links": "^7.5.1",
     "@storybook/addon-onboarding": "^1.0.8",
-    "@storybook/blocks": "^7.4.6",
+    "@storybook/blocks": "^7.5.1",
     "@storybook/jest": "^0.2.3",
-    "@storybook/react": "^7.4.6",
-    "@storybook/react-vite": "^7.4.6",
+    "@storybook/manager-api": "^7.5.1",
+    "@storybook/react": "^7.5.1",
+    "@storybook/react-vite": "^7.5.1",
     "@storybook/test-runner": "^0.13.0",
     "@storybook/testing-library": "^0.2.2",
     "@testing-library/dom": "^9.0.0",
@@ -97,6 +100,7 @@
     "tsup": "^7.2.0",
     "typescript": "^5.2.2",
     "vite": "^4.4.11",
-    "vite-tsconfig-paths": "^4.2.1"
+    "vite-tsconfig-paths": "^4.2.1",
+    "wait-on": "^7.0.1"
   }
 }
