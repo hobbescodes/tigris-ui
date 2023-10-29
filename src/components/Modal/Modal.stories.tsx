@@ -26,11 +26,7 @@ export const WithContext: Story = {
     trigger: <Button>Open Modal</Button>,
     title: "Modal Title",
     description: "Modal Description",
-    children: ({ isOpen }) => (
-      <panda.p minW="sm" mt={2}>
-        Open: {String(isOpen)}
-      </panda.p>
-    ),
+    children: ({ isOpen }) => <panda.p mt={2}>Open: {String(isOpen)}</panda.p>,
   },
 };
 

@@ -41,7 +41,7 @@ const modal = defineSlotRecipe({
       borderWidth: "1px",
       borderColor: "border.primary",
       color: "fg.primary",
-      maxWidth: { base: "xs", sm: "sm" },
+      w: { base: "xs", sm: "sm" },
       _open: {
         animation: "slide-in",
       },
