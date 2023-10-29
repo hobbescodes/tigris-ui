@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import { buttonState } from "./Button.spec";
 import { Button } from "components";
-import { Flex } from "generated/panda/jsx";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -14,52 +13,28 @@ const ButtonTest = () => {
   return <Button onClick={() => setCount(count + 1)}>Clicks: {count}</Button>;
 };
 
-export const Variants: Story = {
-  render: () => (
-    <Flex direction="column" gap={2}>
-      <Flex gap={2} align="center">
-        <Button>Button</Button>
-        <Button variant="ghost">Button</Button>
-        <Button variant="rounded">Button</Button>
-        <Button variant="outline">Button</Button>
-      </Flex>
-      <Flex gap={2} align="center">
-        <Button colorScheme="secondary">Button</Button>
-        <Button colorScheme="secondary" variant="ghost">
-          Button
-        </Button>
-        <Button colorScheme="secondary" variant="rounded">
-          Button
-        </Button>
-        <Button colorScheme="secondary" variant="outline">
-          Button
-        </Button>
-      </Flex>
-      <Flex gap={2} align="center">
-        <Button colorScheme="tertiary">Button</Button>
-        <Button colorScheme="tertiary" variant="ghost">
-          Button
-        </Button>
-        <Button colorScheme="tertiary" variant="rounded">
-          Button
-        </Button>
-        <Button colorScheme="tertiary" variant="outline">
-          Button
-        </Button>
-      </Flex>
-    </Flex>
-  ),
-};
-
-export const Sizes: Story = {
-  render: () => (
-    <Flex gap={2}>
-      <Button size="xs">Button</Button>
-      <Button size="sm">Button</Button>
-      <Button>Button</Button>
-      <Button size="lg">Button</Button>
-    </Flex>
-  ),
+export const Example: Story = {
+  args: {
+    children: "Click Me",
+  },
+  argTypes: {
+    size: {
+      options: ["xs", "sm", "md", "lg"],
+      control: { type: "radio" },
+      defaultValue: { summary: "md" },
+    },
+    colorScheme: {
+      options: ["primary", "secondary", "tertiary"],
+      control: { type: "radio" },
+      defaultValue: { summary: "primary" },
+    },
+    variant: {
+      options: ["primary", "outline", "ghost", "rounded"],
+      control: { type: "radio" },
+      defaultValue: { summary: "primary" },
+    },
+  },
+  name: "Button",
 };
 
 export const ButtonState: Story = {
