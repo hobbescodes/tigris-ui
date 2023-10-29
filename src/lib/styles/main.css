@@ -10,14 +10,20 @@
   --font-code: var(--font-geist-mono);
 }
 
+@layer base {
+  :root {
+    font-family: var(--font-primary);
+  }
+}
+
 @font-face {
   font-family: "Geist";
-  src: url("../fonts/geist.ttf") format("truetype");
+  src: url("../fonts/geist.otf") format("opentype");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Geist Mono";
-  src: url("../fonts/geist.mono.ttf") format("truetype");
+  src: url("../fonts/geist.mono.otf") format("opentype");
   font-display: swap;
 }
