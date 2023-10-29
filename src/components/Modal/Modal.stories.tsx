@@ -12,7 +12,7 @@ export const Default: Story = {
     title: "Modal Title",
     description: "Modal Description",
     children: (
-      <panda.p mt={2}>
+      <panda.p mt={2} color="fg.primary">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam.
@@ -23,10 +23,12 @@ export const Default: Story = {
 
 export const WithContext: Story = {
   args: {
-    trigger: <Button>Open Modal</Button>,
-    title: "Modal Title",
-    description: "Modal Description",
-    children: ({ isOpen }) => <panda.p mt={2}>Open: {String(isOpen)}</panda.p>,
+    ...Default.args,
+    children: ({ isOpen }) => (
+      <panda.p mt={2} color="fg.primary">
+        Open: {String(isOpen)}
+      </panda.p>
+    ),
   },
 };
 

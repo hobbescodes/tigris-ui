@@ -29,7 +29,7 @@ const animations = defineTokens.animations({
     value: "slide-in-bottom 400ms {easings.emphasized-in}",
   },
   "slide-out-bottom": {
-    value: "slide-out-bottom 200ms",
+    value: "slide-out-bottom 200ms {easings.emphasized-out}",
   },
   "slide-in-top": {
     value: "slide-in-top 400ms {easings.emphasized-in}",
