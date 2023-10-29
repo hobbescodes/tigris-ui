@@ -16,6 +16,7 @@ import Icon from "components/Icon/Icon";
 import { cx } from "generated/panda/css";
 import { panda } from "generated/panda/jsx";
 import { modal } from "generated/panda/recipes";
+import { useIsMobile } from "lib/hooks";
 import { getContextualChildren } from "lib/util";
 
 import type { DialogProps } from "@ark-ui/react";
@@ -43,6 +44,8 @@ const Modal = ({
 }: ModalProps) => {
   const classes = modal({ variant });
 
+  const isMobile = useIsMobile();
+
   return (
     <Dialog {...rest}>
       {(ctx) => (
@@ -62,9 +65,8 @@ const Modal = ({
                 unmountOnExit
                 asChild
               >
-                {/* TODO: add useBreakpointValue to verify that draggable container is limited to mobile screens */}
                 <PandaMotionContainer
-                  drag="y"
+                  drag={isMobile ? "y" : false}
                   dragConstraints={{ top: 0, bottom: 200 }}
                   dragElastic={false}
                   dragSnapToOrigin
@@ -72,6 +74,7 @@ const Modal = ({
                     if (info.offset.y > 150 || info.velocity.y > 500)
                       ctx.close();
                   }}
+                  cursor={isMobile ? "pointer" : "default"}
                 >
                   <panda.div
                     display={{ base: "block", sm: "none" }}
@@ -83,6 +86,7 @@ const Modal = ({
                     bgColor="bg.subtle"
                     opacity={{ base: 1, _groupHover: 0.8 }}
                   />
+
                   {title && (
                     <DialogTitle className={classes.title}>{title}</DialogTitle>
                   )}

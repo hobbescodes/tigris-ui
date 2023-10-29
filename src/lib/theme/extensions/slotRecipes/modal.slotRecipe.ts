@@ -86,7 +86,6 @@ const modal = defineSlotRecipe({
           bottom: 0,
           borderTopRadius: "md",
           minH: "50vh",
-          cursor: "pointer",
           _open: {
             animation: "slide-in-bottom",
           },
