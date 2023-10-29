@@ -32,22 +32,16 @@ const modal = defineSlotRecipe({
       zIndex: "modal",
     },
     content: {
-      position: "relative",
       mx: 1,
-      p: 6,
+      pt: { base: 0, sm: 6 },
+      px: 6,
+      pb: 6,
       bgColor: "bg.primary",
       boxShadow: "lg",
-      borderRadius: "md",
       borderWidth: "1px",
       borderColor: "border.primary",
       color: "fg.primary",
-      w: { base: "xs", sm: "sm" },
-      _open: {
-        animation: "slide-in",
-      },
-      _closed: {
-        animation: "slide-out",
-      },
+      w: { base: "full", sm: "sm" },
     },
     title: {
       color: "fg.primary",
@@ -69,7 +63,42 @@ const modal = defineSlotRecipe({
       borderRadius: "sm",
       p: 2,
       bgColor: { base: "inherit", _hover: "bg.subtle" },
+      display: { base: "none", sm: "inline-flex" },
     },
+  },
+  variants: {
+    variant: {
+      primary: {
+        content: {
+          position: "relative",
+          borderRadius: "md",
+          _open: {
+            animation: "slide-in",
+          },
+          _closed: {
+            animation: "slide-out",
+          },
+        },
+      },
+      mobile: {
+        content: {
+          position: "absolute",
+          bottom: 0,
+          borderTopRadius: "md",
+          minH: "30vh",
+          cursor: "pointer",
+          _open: {
+            animation: "slide-in-bottom",
+          },
+          _closed: {
+            animation: "slide-out-bottom",
+          },
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    variant: { base: "mobile", sm: "primary" },
   },
 });
 

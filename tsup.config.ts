@@ -31,7 +31,7 @@ const tsupConfig = defineTsupConfig({
   format: ["cjs", "esm"],
   // NB: `peerDeps`, among others, are excluded (marked external) by default
   // see https://tsup.egoist.dev/#excluding-packages
-  external: ["@ark-ui/react", "react-icons"],
+  external: ["@ark-ui/react", "framer-motion", "react-icons"],
   outDir: "build",
   onSuccess: async () => {
     console.log("Generating type declarations...");

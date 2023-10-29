@@ -58,7 +58,7 @@ Now you are ready to install the UI library. You can either install it [from the
 
 ## Remote
 
-Install from remote repository along with required dependencies: `bun add @hobbescodes/tigris-ui @ark-ui/react`
+Install from remote repository along with required dependencies: `bun add @hobbescodes/tigris-ui @ark-ui/react framer-motion`
 
 ## Local
 
