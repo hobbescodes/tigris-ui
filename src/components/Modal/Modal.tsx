@@ -10,10 +10,10 @@ import {
   Portal,
 } from "@ark-ui/react";
 import { motion } from "framer-motion";
-import { useRef } from "react";
 import { FiX as CloseIcon } from "react-icons/fi";
 
 import Icon from "components/Icon/Icon";
+import { cx } from "generated/panda/css";
 import { panda } from "generated/panda/jsx";
 import { modal } from "generated/panda/recipes";
 import { getContextualChildren } from "lib/util";
@@ -43,8 +43,6 @@ const Modal = ({
 }: ModalProps) => {
   const classes = modal({ variant });
 
-  const dragConstraints = useRef<HTMLDivElement>(null);
-
   return (
     <Dialog {...rest}>
       {(ctx) => (
@@ -60,21 +58,23 @@ const Modal = ({
 
             <DialogContainer className={classes.container}>
               <DialogContent
-                ref={dragConstraints}
-                className={classes.content}
+                className={cx(classes.content, "group")}
+                unmountOnExit
                 asChild
               >
                 {/* TODO: add useBreakpointValue to verify that draggable container is limited to mobile screens */}
                 <PandaMotionContainer
                   drag="y"
-                  dragConstraints={dragConstraints}
+                  dragConstraints={{ top: 0, bottom: 200 }}
+                  dragElastic={false}
+                  dragSnapToOrigin
                   onDrag={(_e, info) => {
-                    // TODO: add condition for velocity as well
-                    if (info.offset.y > 150) ctx.close();
+                    if (info.offset.y > 150 || info.velocity.y > 500)
+                      ctx.close();
                   }}
-                  className="group"
                 >
                   <panda.div
+                    display={{ base: "block", sm: "none" }}
                     w="30%"
                     borderRadius="full"
                     mx="auto"
