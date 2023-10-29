@@ -56,9 +56,9 @@ const drawer = defineSlotRecipe({
     },
     header: {
       display: "flex",
-      flexDirection: "column",
       position: "relative",
-      gap: 1,
+      alignItems: "center",
+      gap: 2,
       gridArea: "header",
       pt: { base: 4, md: 6 },
       pb: 4,
@@ -133,12 +133,6 @@ const drawer = defineSlotRecipe({
           top: 2,
           right: 2,
         },
-        title: {
-          textAlign: "start",
-        },
-        description: {
-          textAlign: "start",
-        },
         body: {
           textAlign: "start",
         },
@@ -147,6 +141,9 @@ const drawer = defineSlotRecipe({
         closeTrigger: {
           top: 2,
           left: 2,
+        },
+        header: {
+          flexDirection: "row-reverse",
         },
         title: {
           textAlign: "end",

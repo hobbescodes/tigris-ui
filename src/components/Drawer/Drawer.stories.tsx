@@ -10,6 +10,15 @@ export const Example: Story = {
     trigger: <Button>Open Drawer</Button>,
     title: "Drawer Title",
     description: "Drawer Description",
+    headerAddon: (
+      <panda.img
+        src="/img/hobbescodes.jpeg"
+        alt="hobbescodes"
+        h={10}
+        w={10}
+        borderRadius="full"
+      />
+    ),
     children: (
       <panda.p mt={2} color="fg.primary">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

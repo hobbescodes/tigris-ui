@@ -13,7 +13,7 @@ import {
 import { FiX as CloseIcon } from "react-icons/fi";
 
 import Icon from "components/Icon/Icon";
-import { panda } from "generated/panda/jsx";
+import { Flex, panda } from "generated/panda/jsx";
 import { drawer } from "generated/panda/recipes";
 import { getContextualChildren } from "lib/util";
 
@@ -26,6 +26,7 @@ export interface DrawerProps extends DialogProps, DrawerVariantProps {
   trigger?: ReactNode;
   title?: string;
   description?: string;
+  headerAddon?: ReactNode;
   footer?: ReactNode | ((props: DialogContext) => ReactNode);
 }
 
@@ -36,6 +37,7 @@ const Drawer = ({
   trigger,
   title,
   description,
+  headerAddon,
   footer,
   children,
   alignment,
@@ -66,15 +68,21 @@ const Drawer = ({
                 unmountOnExit
               >
                 <PandaContainer className={classes.header}>
-                  {title && (
-                    <DialogTitle className={classes.title}>{title}</DialogTitle>
-                  )}
+                  {headerAddon && headerAddon}
 
-                  {description && (
-                    <DialogDescription className={classes.description}>
-                      {description}
-                    </DialogDescription>
-                  )}
+                  <Flex direction="column" gap={1}>
+                    {title && (
+                      <DialogTitle className={classes.title}>
+                        {title}
+                      </DialogTitle>
+                    )}
+
+                    {description && (
+                      <DialogDescription className={classes.description}>
+                        {description}
+                      </DialogDescription>
+                    )}
+                  </Flex>
 
                   <DialogCloseTrigger
                     aria-label="close button"
