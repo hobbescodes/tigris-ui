@@ -6,7 +6,10 @@ import {
 
 import * as baseExtensions from "lib/theme/extensions/base";
 import * as recipes from "lib/theme/extensions/recipes";
-import { colors as semanticColors } from "lib/theme/extensions/semanticTokens";
+import {
+  colors as semanticColors,
+  fonts,
+} from "lib/theme/extensions/semanticTokens";
 import * as slotRecipes from "lib/theme/extensions/slotRecipes";
 import {
   animations,
@@ -24,6 +27,7 @@ const tokens = defineTokens({
 
 const semanticTokens = defineSemanticTokens({
   colors: semanticColors,
+  fonts,
 });
 
 const tigrisPreset = definePreset({

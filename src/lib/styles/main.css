@@ -1,1 +1,23 @@
 @layer reset, base, tokens, recipes, utilities;
+
+:root {
+  /* alias fonts to CSS variables */
+  --font-geist: "Geist", sans-serif;
+  --font-geist-mono: "Geist Mono", monospace;
+
+  /* semantic */
+  --font-primary: var(--font-geist);
+  --font-code: var(--font-geist-mono);
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("../fonts/geist.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("../fonts/geist.mono.ttf") format("truetype");
+  font-display: swap;
+}
