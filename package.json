@@ -23,7 +23,9 @@
     "./index.css": "./build/ui.css"
   },
   "keywords": [
-    "bun"
+    "bun",
+    "panda",
+    "ark"
   ],
   "scripts": {
     "prepare": "husky install",
