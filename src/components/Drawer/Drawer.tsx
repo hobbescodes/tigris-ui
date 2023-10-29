@@ -1,4 +1,5 @@
 import {
+  ark,
   Dialog,
   DialogBackdrop,
   DialogCloseTrigger,
@@ -37,10 +38,13 @@ const Drawer = ({
   description,
   footer,
   children,
+  alignment,
   placement,
   ...rest
 }: DrawerProps) => {
-  const classes = drawer({ placement });
+  const classes = drawer({ alignment, placement });
+
+  const PandaContainer = panda(ark.div);
 
   return (
     <Dialog {...rest}>
@@ -61,7 +65,7 @@ const Drawer = ({
                 lazyMount
                 unmountOnExit
               >
-                <panda.div className={classes.header}>
+                <PandaContainer className={classes.header}>
                   {title && (
                     <DialogTitle className={classes.title}>{title}</DialogTitle>
                   )}
@@ -80,16 +84,16 @@ const Drawer = ({
                       <CloseIcon />
                     </Icon>
                   </DialogCloseTrigger>
-                </panda.div>
+                </PandaContainer>
 
                 <panda.div className={classes.body}>
                   {getContextualChildren({ ctx, children })}
                 </panda.div>
 
                 {footer && (
-                  <panda.div className={classes.footer}>
+                  <PandaContainer className={classes.footer} asChild>
                     {getContextualChildren({ ctx, children: footer })}
-                  </panda.div>
+                  </PandaContainer>
                 )}
               </DialogContent>
             </DialogContainer>

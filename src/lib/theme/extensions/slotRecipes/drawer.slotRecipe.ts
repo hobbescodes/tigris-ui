@@ -35,7 +35,6 @@ const drawer = defineSlotRecipe({
       zIndex: "modal",
     },
     content: {
-      position: "relative",
       background: "bg.primary",
       borderWidth: "1px",
       boxShadow: "xl",
@@ -91,8 +90,6 @@ const drawer = defineSlotRecipe({
     },
     closeTrigger: {
       position: "absolute",
-      top: 2,
-      right: 2,
       cursor: "pointer",
       borderRadius: "sm",
       p: 2,
@@ -130,9 +127,45 @@ const drawer = defineSlotRecipe({
         },
       },
     },
+    alignment: {
+      start: {
+        closeTrigger: {
+          top: 2,
+          right: 2,
+        },
+        title: {
+          textAlign: "start",
+        },
+        description: {
+          textAlign: "start",
+        },
+        body: {
+          textAlign: "start",
+        },
+      },
+      end: {
+        closeTrigger: {
+          top: 2,
+          left: 2,
+        },
+        title: {
+          textAlign: "end",
+        },
+        description: {
+          textAlign: "end",
+        },
+        body: {
+          textAlign: "end",
+        },
+        footer: {
+          flexDirection: "row-reverse",
+        },
+      },
+    },
   },
   defaultVariants: {
     placement: "right",
+    alignment: "start",
   },
 });
 
