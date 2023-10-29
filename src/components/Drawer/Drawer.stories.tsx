@@ -22,10 +22,12 @@ export const Default: Story = {
 
 export const WithContext: Story = {
   args: {
-    trigger: <Button>Open Drawer</Button>,
-    title: "Drawer Title",
-    description: "Drawer Description",
-    children: ({ isOpen }) => <panda.p mt={2}>Open: {String(isOpen)}</panda.p>,
+    ...Default.args,
+    children: ({ isOpen }) => (
+      <panda.p mt={2} color="fg.primary">
+        Open: {String(isOpen)}
+      </panda.p>
+    ),
   },
 };
 

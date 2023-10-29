@@ -33,10 +33,11 @@ const Drawer = ({
   title,
   description,
   children,
+  layout,
   placement,
   ...rest
 }: DrawerProps) => {
-  const classes = drawer({ placement });
+  const classes = drawer({ layout, placement });
 
   return (
     <Dialog {...rest}>

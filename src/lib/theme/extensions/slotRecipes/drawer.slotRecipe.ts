@@ -31,10 +31,10 @@ const drawer = defineSlotRecipe({
     content: {
       background: "bg.primary",
       boxShadow: "lg",
-      height: "100%",
+      borderWidth: "1px",
+      borderColor: "border.primary",
       overflowY: "auto",
       position: "relative",
-      width: { base: "100%", sm: "sm" },
       p: 6,
     },
     title: {
@@ -53,8 +53,6 @@ const drawer = defineSlotRecipe({
       cursor: "pointer",
       borderRadius: "sm",
       pos: "absolute",
-      top: 2,
-      right: 2,
       p: 2,
       bgColor: { base: "inherit", _hover: "bg.subtle" },
       _focus: { outline: "none" },
@@ -67,6 +65,8 @@ const drawer = defineSlotRecipe({
           justifyContent: "flex-end",
         },
         content: {
+          height: "100%",
+          width: { base: "100%", sm: "sm" },
           _open: {
             animation: "slide-in-right",
           },
@@ -80,6 +80,8 @@ const drawer = defineSlotRecipe({
           justifyContent: "flex-start",
         },
         content: {
+          height: "100%",
+          width: { base: "100%", sm: "sm" },
           _open: {
             animation: "slide-in-left",
           },
@@ -93,6 +95,8 @@ const drawer = defineSlotRecipe({
           alignItems: "flex-end",
         },
         content: {
+          height: { base: "95%", sm: "sm" },
+          width: "100%",
           _open: {
             animation: "slide-in-bottom",
           },
@@ -106,6 +110,8 @@ const drawer = defineSlotRecipe({
           alignItems: "flex-start",
         },
         content: {
+          height: { base: "95%", sm: "sm" },
+          width: "100%",
           _open: {
             animation: "slide-in-top",
           },
@@ -115,9 +121,30 @@ const drawer = defineSlotRecipe({
         },
       },
     },
+    layout: {
+      start: {
+        content: {
+          textAlign: "start",
+        },
+        closeTrigger: {
+          top: 2,
+          right: 2,
+        },
+      },
+      end: {
+        content: {
+          textAlign: "end",
+        },
+        closeTrigger: {
+          top: 2,
+          left: 2,
+        },
+      },
+    },
   },
   defaultVariants: {
     placement: { base: "bottom", sm: "right" },
+    layout: "start",
   },
 });
 
