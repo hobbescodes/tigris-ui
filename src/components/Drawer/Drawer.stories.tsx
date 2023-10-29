@@ -1,5 +1,5 @@
 import { Button, Drawer } from "components";
-import { panda } from "generated/panda/jsx";
+import { Flex, panda } from "generated/panda/jsx";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -23,6 +23,14 @@ export const Default: Story = {
 export const WithContext: Story = {
   args: {
     ...Default.args,
+    footer: ({ close }) => (
+      <Flex gap={2}>
+        <Button onClick={() => close()} variant="outline">
+          Cancel
+        </Button>
+        <Button>Action</Button>
+      </Flex>
+    ),
     children: ({ isOpen }) => (
       <panda.p mt={2} color="fg.primary">
         Open: {String(isOpen)}

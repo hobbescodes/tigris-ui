@@ -1,14 +1,16 @@
 import { dialogAnatomy } from "@ark-ui/anatomy";
 import { defineSlotRecipe } from "@pandacss/dev";
 
+const anatomy = dialogAnatomy.extendWith("header", "body", "footer");
+
 const drawer = defineSlotRecipe({
   className: "drawer",
-  description: "Drawer styles recipe.",
-  slots: dialogAnatomy.keys(),
+  slots: [...anatomy.keys()],
   base: {
     backdrop: {
       backdropFilter: "blur(4px)",
       background: {
+        // TODO: replace when supported in Panda: bg.canvas/80
         base: "rgba(250, 250, 250, 0.8)",
         _dark: "rgba(10, 10, 10, 0.8)",
       },
@@ -23,65 +25,88 @@ const drawer = defineSlotRecipe({
       },
     },
     container: {
+      alignItems: "center",
       display: "flex",
-      inset: 0,
+      top: 0,
+      bottom: 0,
+      justifyContent: "center",
       position: "fixed",
+      width: { base: "full", sm: "sm" },
       zIndex: "modal",
     },
     content: {
-      background: "bg.primary",
-      boxShadow: "lg",
-      borderWidth: "1px",
-      borderColor: "border.primary",
-      overflowY: "auto",
       position: "relative",
-      p: 6,
+      background: "bg.primary",
+      borderWidth: "1px",
+      boxShadow: "xl",
+      display: "grid",
+      divideY: "1px",
+      divideColor: "border.primary",
+      gridTemplateColumns: "1fr",
+      gridTemplateRows: "auto 1fr auto",
+      gridTemplateAreas: `
+        'header'
+        'body'
+        'footer'
+      `,
+      height: "full",
+      width: "full",
+      _hidden: {
+        display: "none",
+      },
+    },
+    header: {
+      display: "flex",
+      flexDirection: "column",
+      position: "relative",
+      gap: 1,
+      gridArea: "header",
+      pt: { base: 4, md: 6 },
+      pb: 4,
+      px: { base: 4, md: 6 },
+    },
+    body: {
+      display: "flex",
+      flexDirection: "column",
+      gridArea: "body",
+      overflow: "auto",
+      color: "fg.primary",
+      p: { base: 4, md: 6 },
+    },
+    footer: {
+      display: "flex",
+      gridArea: "footer",
+      justifyContent: "flex-end",
+      py: 4,
+      px: { base: 4, md: 6 },
     },
     title: {
-      fontWeight: "bold",
-      textStyle: "xl",
       color: "fg.primary",
+      fontWeight: "semibold",
+      textStyle: "xl",
     },
     description: {
       color: "fg.muted",
       textStyle: "sm",
     },
-    trigger: {
-      w: "fit-content",
-    },
     closeTrigger: {
+      position: "absolute",
+      top: 2,
+      right: 2,
       cursor: "pointer",
       borderRadius: "sm",
-      pos: "absolute",
       p: 2,
       bgColor: { base: "inherit", _hover: "bg.subtle" },
-      _focus: { outline: "none" },
     },
   },
   variants: {
     placement: {
-      right: {
-        container: {
-          justifyContent: "flex-end",
-        },
-        content: {
-          height: "100%",
-          width: { base: "100%", sm: "sm" },
-          _open: {
-            animation: "slide-in-right",
-          },
-          _closed: {
-            animation: "slide-out-right",
-          },
-        },
-      },
       left: {
         container: {
-          justifyContent: "flex-start",
+          left: 0,
         },
         content: {
-          height: "100%",
-          width: { base: "100%", sm: "sm" },
+          borderRightColor: "border.primary",
           _open: {
             animation: "slide-in-left",
           },
@@ -90,61 +115,24 @@ const drawer = defineSlotRecipe({
           },
         },
       },
-      bottom: {
+      right: {
         container: {
-          alignItems: "flex-end",
+          right: 0,
         },
         content: {
-          height: { base: "95%", sm: "sm" },
-          width: "100%",
+          borderLeftColor: "border.primary",
           _open: {
-            animation: "slide-in-bottom",
+            animation: "slide-in-right",
           },
           _closed: {
-            animation: "slide-out-bottom",
+            animation: "slide-out-right",
           },
-        },
-      },
-      top: {
-        container: {
-          alignItems: "flex-start",
-        },
-        content: {
-          height: { base: "95%", sm: "sm" },
-          width: "100%",
-          _open: {
-            animation: "slide-in-top",
-          },
-          _closed: {
-            animation: "slide-out-top",
-          },
-        },
-      },
-    },
-    layout: {
-      start: {
-        content: {
-          textAlign: "start",
-        },
-        closeTrigger: {
-          top: 2,
-          right: 2,
-        },
-      },
-      end: {
-        content: {
-          textAlign: "end",
-        },
-        closeTrigger: {
-          top: 2,
-          left: 2,
         },
       },
     },
   },
   defaultVariants: {
-    placement: { base: "bottom", sm: "right" },
-    layout: "start",
+    placement: "right",
   },
 });
 
