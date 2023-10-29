@@ -78,12 +78,12 @@ const Modal = ({
                 >
                   <panda.div
                     display={{ base: "block", sm: "none" }}
-                    w="30%"
+                    w="20%"
                     borderRadius="full"
                     mx="auto"
                     my={3}
                     h={2}
-                    bgColor="bg.subtle"
+                    bgColor="border.primary"
                     opacity={{ base: 1, _groupHover: 0.8 }}
                   />
 
