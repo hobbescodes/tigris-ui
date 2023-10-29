@@ -13,6 +13,7 @@ import { FiX as CloseIcon } from "react-icons/fi";
 
 import Icon from "components/Icon/Icon";
 import { modal } from "generated/panda/recipes";
+import { getContextualChildren } from "lib/util";
 
 import type { DialogProps } from "@ark-ui/react";
 import type { ReactNode } from "react";
@@ -60,8 +61,7 @@ const Modal = ({
                   </DialogDescription>
                 )}
 
-                {/* forward nested context/state if utilized, otherwise directly render children */}
-                {typeof children === "function" ? children(ctx) : children}
+                {getContextualChildren({ ctx, children })}
 
                 <DialogCloseTrigger
                   aria-label="close button"
