@@ -23,6 +23,7 @@ const commitlintConfig: CommitlintUserConfig = {
         "chore", // maintenance
         "ci", // continuous integration
         "docs", // update documentation
+        "feat", // add a new "feature
         "feature", // add a feature
         "fix", // fix a bug
         "perf", // performance improvement
