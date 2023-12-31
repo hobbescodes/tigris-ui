@@ -23,12 +23,16 @@ const modal = defineSlotRecipe({
         animation: "fade-out",
       },
     },
-    container: {
-      display: "flex",
-      position: "fixed",
-      inset: 0,
+    positioner: {
       alignItems: "center",
+      display: "flex",
       justifyContent: "center",
+      left: 0,
+      overflow: "auto",
+      position: "fixed",
+      top: 0,
+      width: "100vw",
+      height: "100dvh",
       zIndex: "modal",
     },
     content: {
@@ -36,10 +40,12 @@ const modal = defineSlotRecipe({
       pt: { base: 0, sm: 6 },
       px: 6,
       pb: 6,
+      position: "relative",
       bgColor: "bg.primary",
       boxShadow: "lg",
       borderWidth: "1px",
       borderColor: "border.primary",
+      borderRadius: "sm",
       color: "fg.primary",
       w: { base: "full", sm: "sm" },
     },
@@ -97,7 +103,7 @@ const modal = defineSlotRecipe({
     },
   },
   defaultVariants: {
-    variant: { base: "mobile", sm: "primary" },
+    variant: "primary",
   },
 });
 

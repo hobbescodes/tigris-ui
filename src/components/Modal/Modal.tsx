@@ -2,12 +2,11 @@ import {
   Dialog,
   DialogBackdrop,
   DialogCloseTrigger,
-  DialogContainer,
   DialogContent,
   DialogDescription,
+  DialogPositioner,
   DialogTitle,
   DialogTrigger,
-  Portal,
 } from "@ark-ui/react";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -49,7 +48,7 @@ const Modal = ({
   const isMobile = useIsMobile();
 
   return (
-    <Dialog {...rest}>
+    <Dialog lazyMount unmountOnExit {...rest}>
       {(ctx) => (
         <>
           {trigger && (
@@ -58,58 +57,56 @@ const Modal = ({
             </DialogTrigger>
           )}
 
-          <Portal>
-            <DialogBackdrop className={classes.backdrop} />
+          <DialogBackdrop className={classes.backdrop} />
 
-            <DialogContainer className={classes.container}>
-              <DialogContent className={classes.content} unmountOnExit asChild>
-                <PandaMotionContainer
-                  drag={isMobile ? "y" : false}
-                  dragConstraints={{ top: 0, bottom: 500 }}
-                  dragElastic={false}
-                  dragSnapToOrigin
-                  onDrag={(_e, info) => {
-                    if (info.offset.y > 250) ctx.close();
-                  }}
-                  onTapStart={() => setIsTapped(true)}
-                  onTap={() => setIsTapped(false)}
-                  cursor={isMobile ? "pointer" : "default"}
+          <DialogPositioner className={classes.positioner}>
+            <DialogContent className={classes.content} asChild>
+              <PandaMotionContainer
+                drag={isMobile ? "y" : false}
+                dragConstraints={{ top: 0, bottom: 500 }}
+                dragElastic={false}
+                dragSnapToOrigin
+                onDrag={(_e, info) => {
+                  if (info.offset.y > 250) ctx.close();
+                }}
+                onTapStart={() => setIsTapped(true)}
+                onTap={() => setIsTapped(false)}
+                cursor={isMobile ? "pointer" : "default"}
+              >
+                <panda.div
+                  display={{ base: "block", sm: "none" }}
+                  w="20%"
+                  borderRadius="full"
+                  mx="auto"
+                  my={3}
+                  h={2}
+                  bgColor="border.primary"
+                  opacity={isTapped ? 0.8 : 1}
+                />
+
+                {title && (
+                  <DialogTitle className={classes.title}>{title}</DialogTitle>
+                )}
+
+                {description && (
+                  <DialogDescription className={classes.description}>
+                    {description}
+                  </DialogDescription>
+                )}
+
+                {getContextualChildren({ ctx, children })}
+
+                <DialogCloseTrigger
+                  aria-label="close button"
+                  className={classes.closeTrigger}
                 >
-                  <panda.div
-                    display={{ base: "block", sm: "none" }}
-                    w="20%"
-                    borderRadius="full"
-                    mx="auto"
-                    my={3}
-                    h={2}
-                    bgColor="border.primary"
-                    opacity={isTapped ? 0.8 : 1}
-                  />
-
-                  {title && (
-                    <DialogTitle className={classes.title}>{title}</DialogTitle>
-                  )}
-
-                  {description && (
-                    <DialogDescription className={classes.description}>
-                      {description}
-                    </DialogDescription>
-                  )}
-
-                  {getContextualChildren({ ctx, children })}
-
-                  <DialogCloseTrigger
-                    aria-label="close button"
-                    className={classes.closeTrigger}
-                  >
-                    <Icon color="fg.primary">
-                      <CloseIcon />
-                    </Icon>
-                  </DialogCloseTrigger>
-                </PandaMotionContainer>
-              </DialogContent>
-            </DialogContainer>
-          </Portal>
+                  <Icon color="fg.primary">
+                    <CloseIcon />
+                  </Icon>
+                </DialogCloseTrigger>
+              </PandaMotionContainer>
+            </DialogContent>
+          </DialogPositioner>
         </>
       )}
     </Dialog>
