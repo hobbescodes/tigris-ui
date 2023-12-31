@@ -33,10 +33,11 @@ export const modalState = async <R extends Renderer = ReactRenderer>({
 
   await step("It should close modal on close button click", async () => {
     const closeButton = screen.getByLabelText("close button");
+    const modalTitle = screen.getByText("Modal Title");
 
     await userEvent.click(closeButton);
 
-    const modalTitle = screen.getByText("Modal Title");
+    await sleep(1000);
 
     await expect(modalTitle).not.toBeVisible();
   });

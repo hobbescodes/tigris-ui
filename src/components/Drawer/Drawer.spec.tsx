@@ -33,10 +33,11 @@ export const drawerState = async <R extends Renderer = ReactRenderer>({
 
   await step("It should close drawer on close button click", async () => {
     const closeButton = screen.getByLabelText("close button");
+    const drawerTitle = screen.getByText("Drawer Title");
 
     await userEvent.click(closeButton);
 
-    const drawerTitle = screen.getByText("Drawer Title");
+    await sleep(1000);
 
     await expect(drawerTitle).not.toBeVisible();
   });
