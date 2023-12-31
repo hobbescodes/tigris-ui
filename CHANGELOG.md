@@ -1,5 +1,19 @@
 # @hobbescodes/tigris-ui
 
+## 0.3.0
+
+### Minor Changes
+
+- [#28](https://github.com/hobbescodes/tigris-ui/pull/28) [`85a1431`](https://github.com/hobbescodes/tigris-ui/commit/85a1431a003445c8f26af7244bd0acefac408e2f) Thanks [@hobbescodes](https://github.com/hobbescodes)! - Add `Drawer` component
+
+- [#39](https://github.com/hobbescodes/tigris-ui/pull/39) [`d1972e3`](https://github.com/hobbescodes/tigris-ui/commit/d1972e3a6f461465e617e36de951b30c9204343c) Thanks [@hobbescodes](https://github.com/hobbescodes)! - Update components to support Ark v1
+
+### Patch Changes
+
+- [#25](https://github.com/hobbescodes/tigris-ui/pull/25) [`727c1f4`](https://github.com/hobbescodes/tigris-ui/commit/727c1f496965c4830e753db427b2776dc6d50605) Thanks [@hobbescodes](https://github.com/hobbescodes)! - Add custom fonts and adjust default `fontFamily`
+
+- [#27](https://github.com/hobbescodes/tigris-ui/pull/27) [`6bda776`](https://github.com/hobbescodes/tigris-ui/commit/6bda77635d6b00db95f2fe22b41272d9f08cdc7f) Thanks [@hobbescodes](https://github.com/hobbescodes)! - Update responsive design of `Modal` component
+
 ## 0.2.0
 
 ### Minor Changes
