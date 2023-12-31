@@ -3,12 +3,11 @@ import {
   Dialog,
   DialogBackdrop,
   DialogCloseTrigger,
-  DialogContainer,
   DialogContent,
   DialogDescription,
+  DialogPositioner,
   DialogTitle,
   DialogTrigger,
-  Portal,
 } from "@ark-ui/react";
 import { FiX as CloseIcon } from "react-icons/fi";
 
@@ -49,7 +48,7 @@ const Drawer = ({
   const PandaContainer = panda(ark.div);
 
   return (
-    <Dialog {...rest}>
+    <Dialog lazyMount unmountOnExit {...rest}>
       {(ctx) => (
         <>
           {trigger && (
@@ -58,54 +57,46 @@ const Drawer = ({
             </DialogTrigger>
           )}
 
-          <Portal>
-            <DialogBackdrop className={classes.backdrop} />
+          <DialogBackdrop className={classes.backdrop} />
 
-            <DialogContainer className={classes.container}>
-              <DialogContent
-                className={classes.content}
-                lazyMount
-                unmountOnExit
-              >
-                <PandaContainer className={classes.header}>
-                  {headerAddon && headerAddon}
+          <DialogPositioner className={classes.positioner}>
+            <DialogContent className={classes.content}>
+              <PandaContainer className={classes.header}>
+                {headerAddon && headerAddon}
 
-                  <Flex direction="column" gap={1}>
-                    {title && (
-                      <DialogTitle className={classes.title}>
-                        {title}
-                      </DialogTitle>
-                    )}
+                <Flex direction="column" gap={1}>
+                  {title && (
+                    <DialogTitle className={classes.title}>{title}</DialogTitle>
+                  )}
 
-                    {description && (
-                      <DialogDescription className={classes.description}>
-                        {description}
-                      </DialogDescription>
-                    )}
-                  </Flex>
+                  {description && (
+                    <DialogDescription className={classes.description}>
+                      {description}
+                    </DialogDescription>
+                  )}
+                </Flex>
 
-                  <DialogCloseTrigger
-                    aria-label="close button"
-                    className={classes.closeTrigger}
-                  >
-                    <Icon color="fg.primary">
-                      <CloseIcon />
-                    </Icon>
-                  </DialogCloseTrigger>
+                <DialogCloseTrigger
+                  aria-label="close button"
+                  className={classes.closeTrigger}
+                >
+                  <Icon color="fg.primary">
+                    <CloseIcon />
+                  </Icon>
+                </DialogCloseTrigger>
+              </PandaContainer>
+
+              <PandaContainer className={classes.body} asChild>
+                {getContextualChildren({ ctx, children })}
+              </PandaContainer>
+
+              {footer && (
+                <PandaContainer className={classes.footer} asChild>
+                  {getContextualChildren({ ctx, children: footer })}
                 </PandaContainer>
-
-                <PandaContainer className={classes.body} asChild>
-                  {getContextualChildren({ ctx, children })}
-                </PandaContainer>
-
-                {footer && (
-                  <PandaContainer className={classes.footer} asChild>
-                    {getContextualChildren({ ctx, children: footer })}
-                  </PandaContainer>
-                )}
-              </DialogContent>
-            </DialogContainer>
-          </Portal>
+              )}
+            </DialogContent>
+          </DialogPositioner>
         </>
       )}
     </Dialog>

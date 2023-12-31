@@ -24,7 +24,7 @@ const drawer = defineSlotRecipe({
         animation: "fade-out",
       },
     },
-    container: {
+    positioner: {
       alignItems: "center",
       display: "flex",
       top: 0,
@@ -99,7 +99,7 @@ const drawer = defineSlotRecipe({
   variants: {
     placement: {
       left: {
-        container: {
+        positioner: {
           left: 0,
         },
         content: {
@@ -113,7 +113,7 @@ const drawer = defineSlotRecipe({
         },
       },
       right: {
-        container: {
+        positioner: {
           right: 0,
         },
         content: {
