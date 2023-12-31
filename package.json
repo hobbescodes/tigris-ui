@@ -100,7 +100,7 @@
     "storybook-dark-mode": "^3.0.1",
     "tsup": "^8.0.0",
     "typescript": "^5.2.2",
-    "vite": "^4.4.11",
+    "vite": "^5.0.0",
     "vite-tsconfig-paths": "^4.2.1",
     "wait-on": "^7.0.1"
   }
