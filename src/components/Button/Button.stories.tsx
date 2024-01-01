@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { buttonState } from "./Button.spec";
 import { Button } from "components";
+import { Flex } from "generated/panda/jsx";
 
 import type { Meta, StoryObj } from "@storybook/react";
 
@@ -23,11 +24,6 @@ export const Example: Story = {
       control: { type: "radio" },
       defaultValue: { summary: "md" },
     },
-    colorScheme: {
-      options: ["primary", "secondary", "tertiary"],
-      control: { type: "radio" },
-      defaultValue: { summary: "primary" },
-    },
     variant: {
       options: ["primary", "outline", "ghost", "rounded"],
       control: { type: "radio" },
@@ -35,6 +31,47 @@ export const Example: Story = {
     },
   },
   name: "Button",
+};
+
+export const Brand: Story = {
+  render: () => (
+    <Flex direction="column" gap={2}>
+      <Flex gap={1}>
+        <Button variant="primary">Primary</Button>
+        <Button variant="outline">Outline</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="rounded">Rounded</Button>
+      </Flex>
+      <Flex gap={1}>
+        <Button colorPalette="brand.secondary" variant="primary">
+          Primary
+        </Button>
+        <Button colorPalette="brand.secondary" variant="outline">
+          Outline
+        </Button>
+        <Button colorPalette="brand.secondary" variant="ghost">
+          Ghost
+        </Button>
+        <Button colorPalette="brand.secondary" variant="rounded">
+          Rounded
+        </Button>
+      </Flex>
+      <Flex gap={1}>
+        <Button colorPalette="brand.tertiary" variant="primary">
+          Primary
+        </Button>
+        <Button colorPalette="brand.tertiary" variant="outline">
+          Outline
+        </Button>
+        <Button colorPalette="brand.tertiary" variant="ghost">
+          Ghost
+        </Button>
+        <Button colorPalette="brand.tertiary" variant="rounded">
+          Rounded
+        </Button>
+      </Flex>
+    </Flex>
+  ),
 };
 
 export const ButtonState: Story = {

@@ -1,25 +1,17 @@
-import {
-  ark,
-  Dialog,
-  DialogBackdrop,
-  DialogCloseTrigger,
-  DialogContent,
-  DialogDescription,
-  DialogPositioner,
-  DialogTitle,
-  DialogTrigger,
-} from "@ark-ui/react";
+import { ark, Dialog as ArkDialog } from "@ark-ui/react";
 import { FiX as CloseIcon } from "react-icons/fi";
 
 import Icon from "components/Icon/Icon";
 import { Flex, panda } from "generated/panda/jsx";
 import { drawer } from "generated/panda/recipes";
-import { getContextualChildren } from "lib/util";
+import { createStyleContext, getContextualChildren } from "lib/util";
 
 import type { DialogProps } from "@ark-ui/react";
 import type { DialogContext } from "@ark-ui/react/dialog/dialog-context";
 import type { DrawerVariantProps } from "generated/panda/recipes";
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
+
+const { withProvider, withContext } = createStyleContext(drawer);
 
 export interface DrawerProps extends DialogProps, DrawerVariantProps {
   trigger?: ReactNode;
@@ -27,7 +19,43 @@ export interface DrawerProps extends DialogProps, DrawerVariantProps {
   description?: string;
   headerAddon?: ReactNode;
   footer?: ReactNode | ((props: DialogContext) => ReactNode);
+  /** Drawer content (body) container props. */
+  contentProps?: ComponentPropsWithoutRef<typeof DrawerContent>;
 }
+
+export const DrawerRoot = withProvider(panda(ArkDialog.Root), "root");
+
+export const DrawerTrigger = withContext(panda(ArkDialog.Trigger), "trigger");
+
+export const DrawerBackdrop = withContext(
+  panda(ArkDialog.Backdrop),
+  "backdrop"
+);
+
+export const DrawerCloseTrigger = withContext(
+  panda(ArkDialog.CloseTrigger),
+  "closeTrigger"
+);
+
+export const DrawerPositioner = withContext(
+  panda(ArkDialog.Positioner),
+  "positioner"
+);
+
+export const DrawerContent = withContext(panda(ArkDialog.Content), "content");
+
+export const DrawerTitle = withContext(panda(ArkDialog.Title), "title");
+
+export const DrawerDescription = withContext(
+  panda(ArkDialog.Description),
+  "description"
+);
+
+export const DrawerHeader = withContext(panda(ark.div), "header");
+
+export const DrawerBody = withContext(panda(ark.div), "body");
+
+export const DrawerFooter = withContext(panda(ark.div), "footer");
 
 /**
  * A panel that slides in from the edge of the screen.
@@ -38,69 +66,51 @@ const Drawer = ({
   description,
   headerAddon,
   footer,
+  contentProps,
   children,
-  alignment,
-  placement,
   ...rest
-}: DrawerProps) => {
-  const classes = drawer({ alignment, placement });
+}: DrawerProps) => (
+  <DrawerRoot lazyMount unmountOnExit {...rest}>
+    {(ctx) => (
+      <>
+        {trigger && <DrawerTrigger asChild>{trigger}</DrawerTrigger>}
 
-  const PandaContainer = panda(ark.div);
+        <DrawerBackdrop />
 
-  return (
-    <Dialog lazyMount unmountOnExit {...rest}>
-      {(ctx) => (
-        <>
-          {trigger && (
-            <DialogTrigger className={classes.trigger} asChild>
-              {trigger}
-            </DialogTrigger>
-          )}
+        <DrawerPositioner>
+          <DrawerContent {...contentProps}>
+            <DrawerHeader>
+              {headerAddon && headerAddon}
 
-          <DialogBackdrop className={classes.backdrop} />
+              <Flex direction="column" gap={1}>
+                {title && <DrawerTitle>{title}</DrawerTitle>}
 
-          <DialogPositioner className={classes.positioner}>
-            <DialogContent className={classes.content}>
-              <PandaContainer className={classes.header}>
-                {headerAddon && headerAddon}
+                {description && (
+                  <DrawerDescription>{description}</DrawerDescription>
+                )}
+              </Flex>
 
-                <Flex direction="column" gap={1}>
-                  {title && (
-                    <DialogTitle className={classes.title}>{title}</DialogTitle>
-                  )}
+              <DrawerCloseTrigger aria-label="close button">
+                <Icon color="fg.primary">
+                  <CloseIcon />
+                </Icon>
+              </DrawerCloseTrigger>
+            </DrawerHeader>
 
-                  {description && (
-                    <DialogDescription className={classes.description}>
-                      {description}
-                    </DialogDescription>
-                  )}
-                </Flex>
+            <DrawerBody asChild>
+              {getContextualChildren({ ctx, children })}
+            </DrawerBody>
 
-                <DialogCloseTrigger
-                  aria-label="close button"
-                  className={classes.closeTrigger}
-                >
-                  <Icon color="fg.primary">
-                    <CloseIcon />
-                  </Icon>
-                </DialogCloseTrigger>
-              </PandaContainer>
-
-              <PandaContainer className={classes.body} asChild>
-                {getContextualChildren({ ctx, children })}
-              </PandaContainer>
-
-              {footer && (
-                <PandaContainer className={classes.footer} asChild>
-                  {getContextualChildren({ ctx, children: footer })}
-                </PandaContainer>
-              )}
-            </DialogContent>
-          </DialogPositioner>
-        </>
-      )}
-    </Dialog>
-  );
-};
+            {footer && (
+              <DrawerFooter asChild>
+                {getContextualChildren({ ctx, children: footer })}
+              </DrawerFooter>
+            )}
+          </DrawerContent>
+        </DrawerPositioner>
+      </>
+    )}
+  </DrawerRoot>
+);
 
 export default Drawer;

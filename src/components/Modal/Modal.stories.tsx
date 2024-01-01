@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 
 type Story = StoryObj<typeof Modal>;
 
-export const Default: Story = {
+export const Example: Story = {
   args: {
     trigger: <Button>Open Modal</Button>,
     title: "Modal Title",
@@ -23,7 +23,7 @@ export const Default: Story = {
 
 export const WithContext: Story = {
   args: {
-    ...Default.args,
+    ...Example.args,
     children: ({ isOpen }) => (
       <panda.p mt={2} color="fg.primary">
         Open: {String(isOpen)}
@@ -33,7 +33,7 @@ export const WithContext: Story = {
 };
 
 export const ModalState: Story = {
-  ...Default,
+  ...Example,
   play: modalState,
   name: "[TEST] Modal State",
   tags: ["test"],
