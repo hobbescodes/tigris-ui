@@ -4,6 +4,7 @@ const button = defineRecipe({
   className: "button",
   description: "Button styles recipe.",
   base: {
+    colorPalette: "brand.primary",
     display: "inline-flex",
     alignItems: "center",
     h: "fit-content",
@@ -16,40 +17,30 @@ const button = defineRecipe({
     },
   },
   variants: {
-    colorScheme: {
-      primary: {
-        bgColor: "accent.primary",
-        borderColor: "accent.primary",
-        color: "accent.primary",
-      },
-      secondary: {
-        bgColor: "accent.secondary",
-        borderColor: "accent.secondary",
-        color: "accent.secondary",
-      },
-      tertiary: {
-        bgColor: "accent.tertiary",
-        borderColor: "accent.tertiary",
-        color: "accent.tertiary",
-      },
-    },
     variant: {
       primary: {
+        bgColor: "colorPalette.500",
+        borderColor: "colorPalette.500",
         borderRadius: "sm",
-        color: "white!",
+        color: "white",
       },
       ghost: {
-        bgColor: "transparent!",
+        color: "colorPalette.500",
+        bgColor: "transparent",
         borderRadius: "sm",
-        borderColor: "transparent!",
+        borderColor: "transparent",
       },
       rounded: {
+        bgColor: "colorPalette.500",
+        borderColor: "colorPalette.500",
         borderRadius: "full",
-        color: "white!",
+        color: "white",
       },
       outline: {
-        bgColor: "transparent!",
+        bgColor: "transparent",
         borderRadius: "sm",
+        borderColor: "colorPalette.500",
+        color: "colorPalette.500",
       },
     },
     size: {
@@ -76,7 +67,6 @@ const button = defineRecipe({
     },
   },
   defaultVariants: {
-    colorScheme: "primary",
     variant: "primary",
     size: "md",
   },

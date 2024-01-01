@@ -1,34 +1,49 @@
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogCloseTrigger,
-  DialogContent,
-  DialogDescription,
-  DialogPositioner,
-  DialogTitle,
-  DialogTrigger,
-} from "@ark-ui/react";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { Dialog as ArkDialog } from "@ark-ui/react";
 import { FiX as CloseIcon } from "react-icons/fi";
 
 import Icon from "components/Icon/Icon";
 import { panda } from "generated/panda/jsx";
 import { modal } from "generated/panda/recipes";
-import { useIsMobile } from "lib/hooks";
-import { getContextualChildren } from "lib/util";
+import { createStyleContext, getContextualChildren } from "lib/util";
 
 import type { DialogProps } from "@ark-ui/react";
 import type { ModalVariantProps } from "generated/panda/recipes";
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
+
+const { withProvider, withContext } = createStyleContext(modal);
 
 export interface ModalProps extends DialogProps, ModalVariantProps {
   trigger?: ReactNode;
   title?: string;
   description?: string;
+  /** Modal content (body) container props. */
+  contentProps?: ComponentPropsWithoutRef<typeof ModalContent>;
 }
 
-const PandaMotionContainer = panda(motion.div);
+export const ModalRoot = withProvider(panda(ArkDialog.Root), "root");
+
+export const ModalTrigger = withContext(panda(ArkDialog.Trigger), "trigger");
+
+export const ModalBackdrop = withContext(panda(ArkDialog.Backdrop), "backdrop");
+
+export const ModalCloseTrigger = withContext(
+  panda(ArkDialog.CloseTrigger),
+  "closeTrigger"
+);
+
+export const ModalPositioner = withContext(
+  panda(ArkDialog.Positioner),
+  "positioner"
+);
+
+export const ModalContent = withContext(panda(ArkDialog.Content), "content");
+
+export const ModalTitle = withContext(panda(ArkDialog.Title), "title");
+
+export const ModalDescription = withContext(
+  panda(ArkDialog.Description),
+  "description"
+);
 
 /**
  * A modal window that appears on top of the main content.
@@ -37,80 +52,35 @@ const Modal = ({
   trigger,
   title,
   description,
+  contentProps,
   children,
-  variant,
   ...rest
-}: ModalProps) => {
-  const classes = modal({ variant });
+}: ModalProps) => (
+  <ModalRoot lazyMount unmountOnExit {...rest}>
+    {(ctx) => (
+      <>
+        {trigger && <ModalTrigger asChild>{trigger}</ModalTrigger>}
 
-  const [isTapped, setIsTapped] = useState(false);
+        <ModalBackdrop />
 
-  const isMobile = useIsMobile();
+        <ModalPositioner>
+          <ModalContent {...contentProps}>
+            {title && <ModalTitle>{title}</ModalTitle>}
 
-  return (
-    <Dialog lazyMount unmountOnExit {...rest}>
-      {(ctx) => (
-        <>
-          {trigger && (
-            <DialogTrigger className={classes.trigger} asChild>
-              {trigger}
-            </DialogTrigger>
-          )}
+            {description && <ModalDescription>{description}</ModalDescription>}
 
-          <DialogBackdrop className={classes.backdrop} />
+            {getContextualChildren({ ctx, children })}
 
-          <DialogPositioner className={classes.positioner}>
-            <DialogContent className={classes.content} asChild>
-              <PandaMotionContainer
-                drag={isMobile ? "y" : false}
-                dragConstraints={{ top: 0, bottom: 500 }}
-                dragElastic={false}
-                dragSnapToOrigin
-                onDrag={(_e, info) => {
-                  if (info.offset.y > 250) ctx.close();
-                }}
-                onTapStart={() => setIsTapped(true)}
-                onTap={() => setIsTapped(false)}
-                cursor={isMobile ? "pointer" : "default"}
-              >
-                <panda.div
-                  display={{ base: "block", sm: "none" }}
-                  w="20%"
-                  borderRadius="full"
-                  mx="auto"
-                  my={3}
-                  h={2}
-                  bgColor="border.primary"
-                  opacity={isTapped ? 0.8 : 1}
-                />
-
-                {title && (
-                  <DialogTitle className={classes.title}>{title}</DialogTitle>
-                )}
-
-                {description && (
-                  <DialogDescription className={classes.description}>
-                    {description}
-                  </DialogDescription>
-                )}
-
-                {getContextualChildren({ ctx, children })}
-
-                <DialogCloseTrigger
-                  aria-label="close button"
-                  className={classes.closeTrigger}
-                >
-                  <Icon color="fg.primary">
-                    <CloseIcon />
-                  </Icon>
-                </DialogCloseTrigger>
-              </PandaMotionContainer>
-            </DialogContent>
-          </DialogPositioner>
-        </>
-      )}
-    </Dialog>
-  );
-};
+            <ModalCloseTrigger aria-label="close button">
+              <Icon color="fg.primary">
+                <CloseIcon />
+              </Icon>
+            </ModalCloseTrigger>
+          </ModalContent>
+        </ModalPositioner>
+      </>
+    )}
+  </ModalRoot>
+);
 
 export default Modal;

@@ -1,7 +1,7 @@
 import { dialogAnatomy } from "@ark-ui/anatomy";
 import { defineSlotRecipe } from "@pandacss/dev";
 
-const anatomy = dialogAnatomy.extendWith("header", "body", "footer");
+const anatomy = dialogAnatomy.extendWith("root", "header", "body", "footer");
 
 const drawer = defineSlotRecipe({
   className: "drawer",
@@ -35,6 +35,7 @@ const drawer = defineSlotRecipe({
       zIndex: "modal",
     },
     content: {
+      colorPalette: "brand.primary",
       background: "bg.primary",
       borderWidth: "1px",
       boxShadow: "xl",
@@ -93,7 +94,10 @@ const drawer = defineSlotRecipe({
       cursor: "pointer",
       borderRadius: "sm",
       p: 2,
-      bgColor: { base: "inherit", _hover: "bg.subtle" },
+      bgColor: {
+        base: "inherit",
+        _hover: { base: "colorPalette.50", _dark: "colorPalette.950" },
+      },
     },
   },
   variants: {
